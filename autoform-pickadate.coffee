@@ -15,11 +15,12 @@ AutoForm.addInputType 'pickadate',
     if @val()
       picker = @pickadate('picker')
       if picker
-        val = picker.get().obj
+        val = picker.get('select').obj
       else
         val = @val()
       return if val instanceof Date then val else @val()
     return
+
   valueConverters:
     'string': (val) ->
       if val instanceof Date then AutoForm.Utility.dateToDateStringUTC(val) else val
@@ -76,6 +77,7 @@ Template.afPickadate.rendered = ->
 
 Template.afPickadate.destroyed = ->
   $input  = @$('input')
-  $picker = $input.pickadate('picker')
-  $picker.stop()
-
+  if $input
+    $picker = $input.pickadate('picker')
+    if $picker && $picker.stop
+      $picker.stop()
