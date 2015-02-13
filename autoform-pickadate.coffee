@@ -13,7 +13,11 @@ AutoForm.addInputType 'pickadate',
   template: 'afPickadate'
   valueOut: ->
     if @val()
-      val = @datepicker('getUTCDate')
+      picker = @pickadate('picker')
+      if picker
+        val = picker.get().obj
+      else
+        val = @val()
       return if val instanceof Date then val else @val()
     return
   valueConverters:
