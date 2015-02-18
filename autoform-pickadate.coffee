@@ -81,3 +81,9 @@ Template.afPickadate.destroyed = ->
     $picker = $input.pickadate('picker')
     if $picker && $picker.stop
       $picker.stop()
+
+
+Template.afPickadate_paper.rendered  = Template.afPickadate.rendered
+Template.afPickadate_paper.destroyed = Template.afPickadate.destroyed
+Template.afPickadate_paper.inheritsHelpersFrom("afPickadate")
+Template.afPickadate_paper.inheritsEventsFrom("afPickadate")

@@ -1,2 +1,6 @@
 template(name="afPickadate")
   input(type="text", value="", $dyn=atts)
+
+template(name="afPickadate_paper")
+  paper-input-decorator(isInvalid="{{afFieldIsInvalid name=this.atts.name}}" label="{{#if this.labelText}}{{this.labelText}}{{else}}{{afFieldLabelText name=this.atts.name}}{{/if}}" class='{{#if afFieldIsInvalid name=this.atts.name}}has-error{{/if}}' error="{{#if afFieldIsInvalid name=this.atts.name}}{{{afFieldMessage name=this.atts.name}}}{{/if}}")
+    input(type="text" value="" $dyn=atts)
