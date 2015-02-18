@@ -54,6 +54,11 @@ Template.afPickadate.rendered = ->
   $input.pickadate data.atts.pickadateOptions
   $picker = $input.pickadate('picker')
 
+  # After selection ensure focus is lost
+  # Fixes an issue when switching tabs and returning would open the picker
+  $picker.on 'close', ()->
+    $(document.activeElement).blur()
+
   @autorun ->
     data = Template.currentData()
     # set field value
