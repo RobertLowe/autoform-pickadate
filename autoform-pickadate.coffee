@@ -19,7 +19,7 @@ AutoForm.addInputType 'pickadate',
       else
         val = @val()
       return if val instanceof Date then val else @val()
-    return
+    return ""
 
   valueConverters:
     'string': (val) ->
@@ -59,13 +59,20 @@ Template.afPickadate.rendered = ->
   $picker.on 'close', ()->
     $(document.activeElement).blur()
 
+  $picker.on 'set', (set)=>
+    # fixes an issue where label is blank after clearing
+    if set.clear == null
+      if $($input).attr('aria-label')
+        $($input).attr('placeholder', $($input).attr('aria-label'))
+
   @autorun ->
     data = Template.currentData()
     # set field value
     if data.value instanceof Date
       $picker.set 'select', data.value
     else if typeof data.value == 'string'
-      $picker.set 'select', data.value
+      if data.value != ""
+        $picker.set 'select', data.value
     # set start date if there's a min in the schema
     if data.min instanceof Date
       # datepicker plugin expects local Date object,
