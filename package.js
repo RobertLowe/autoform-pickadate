@@ -1,6 +1,6 @@
 Package.describe({
   name: "robertlowe:autoform-pickadate",
-  version: "0.1.0",
+  version: "0.1.1",
   summary: "pickadate.js for autoform",
   git: "https://github.com/robertlowe/autoform-pickadate"
 });
