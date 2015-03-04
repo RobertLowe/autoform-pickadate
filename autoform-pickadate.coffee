@@ -54,16 +54,10 @@ Template.afPickadate.rendered = ->
   $input.pickadate data.atts.pickadateOptions
   $picker = $input.pickadate('picker')
 
-  # After selection ensure focus is lost
-  # Fixes an issue when switching tabs and returning would open the picker
+  # After selection ensure focus is lost, fixes an issue when switching tabs
+  # and returning to the window would open the picker
   $picker.on 'close', ()->
     $(document.activeElement).blur()
-
-  $picker.on 'set', (set)=>
-    # fixes an issue where label is blank after clearing
-    if set.clear == null
-      if $($input).attr('aria-label')
-        $($input).attr('placeholder', $($input).attr('aria-label'))
 
   @autorun ->
     data = Template.currentData()
