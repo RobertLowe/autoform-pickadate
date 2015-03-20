@@ -14,7 +14,7 @@ Package.onUse(function (api, where) {
   api.use('tracker');
   api.use('coffeescript');
   api.use('mquandalle:jade@0.4.1');
-  api.use('aldeed:autoform@4.2.2');
+  api.use('aldeed:autoform@4.2.2 || 5.0.0');
   api.use('robertlowe:pickadate@3.5.5');
   api.use('aldeed:template-extension@3.4.1');
 
