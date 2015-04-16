@@ -1,7 +1,7 @@
 robertlowe:autoform-pickadate
 =========================
 
-An add-on Meteor package for [aldeed:autoform](https://github.com/aldeed/meteor-autoform). Provides a single custom input type, "pickadate", which renders an input using the [pickadate](amsul.ca/pickadate.js/date) plugin.
+An add-on Meteor package for [aldeed:autoform](https://github.com/aldeed/meteor-autoform). Provides two custom input types, "**pickadate**" and "**pickatime**", which renders an input using the [pickadate](amsul.ca/pickadate.js/date) plugin.
 
 ## Prerequisites
 
@@ -23,8 +23,8 @@ $ meteor add robertlowe:autoform-pickadate
 
 ## Usage
 
-Specify "pickadate" for the `type` attribute of any input. This can be done in a number of ways:
-
+Specify "**pickadate**" or "**pickatime**" for the `type` attribute of any input. This can be done in a number of ways:
+"
 In the schema, which will then work with a `quickForm` or `afQuickFields`:
 
 ```js
@@ -34,18 +34,34 @@ In the schema, which will then work with a `quickForm` or `afQuickFields`:
     autoform: {
       type: "pickadate"
     }
+  },
+
+  time: {
+    type: Date,
+    autoform: {
+      type: "pickatime"
+      pickatimeOptions: {
+        format: "H:i"
+      }
+    }
   }
+
 }
 ```
 
 Or on the `afFieldInput` component or any component that passes along attributes to `afFieldInput`:
 
-```js
+```html
 {{> afQuickField name="typeTest" type="pickadate"}}
-
 {{> afFormGroup name="typeTest" type="pickadate"}}
-
 {{> afFieldInput name="typeTest" type="pickadate"}}
+```
+
+```html
+{{> afQuickField name="typeTest" type="pickatime"}}
+{{> afFormGroup name="typeTest" type="pickatime"}}
+{{> afFieldInput name="typeTest" type="pickatime"}}
+
 ```
 
 ## Automatic Type Conversions
