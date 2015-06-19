@@ -52,7 +52,7 @@ Template.afPickadate.rendered = ->
   data = @data
 
   $input.pickadate data.atts.pickadateOptions
-  $picker = $input.pickadate('picker')
+  @picker = $picker = $input.pickadate('picker')
 
   # After selection ensure focus is lost, fixes an issue when switching tabs
   # and returning to the window would open the picker
@@ -82,9 +82,6 @@ Template.afPickadate.rendered = ->
 
 
 Template.afPickadate.destroyed = ->
-  $input  = @$('input')
-  if $input
-    $picker = $input.pickadate('picker')
-    if $picker && $picker.stop
-      $picker.stop()
+  if @picker && @picker.stop
+    @picker.stop()
 
